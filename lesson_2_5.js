@@ -1,23 +1,49 @@
 "use strict";
-function calcAddition(a, b) {
-  return a + b;
+//Функция вычисления данных пользователя
+function mathOperation(arg1, arg2, operation) {
+  if (operation == 'сложить') {
+    return arg1 + arg2;
+  } else if (operation == 'вычесть') {
+    return arg1 - arg2;
+  } else if (operation == 'умножить') {
+    return arg1 * arg2;
+  } else if (operation == 'разделить') {
+    return arg1 / arg2;
+  } else {
+    return 'ну и считай в уме';
+  }
 }
 
-function calcSubtraction(a, b) {
-  return a - b;
-}
+//Сначала написал функцию на switch, но она выдавала ошибку, попробовал на if. Отладил. Теперь обе работают
 
-function calcMultiplication(a, b) {
-  return a * b;
+function mathOperationSwitch(arg1, arg2, operation) {
+  switch (operation) {
+    case 'сложить':
+      return arg1 + arg2;
+      break;
+    case 'вычесть':
+      return arg1 - arg2;
+      break;
+    case 'умножить':
+      return arg1 * arg2;
+      break;
+    case 'разделить':
+      return arg1 / arg2;
+      break;
+    default:
+      return 'ну и считай в уме';
+  }
 }
+//объявляем переменные
+let arg1 = 0;
+let arg2 = 0;
+let operation = 'операция';
+//запрашиваем значения переменных у пользователя
+arg1 = +prompt('Введи первое число');
+arg2 = +prompt('Введи второе число');
+operation = prompt('Что нужно сделать?');
 
-function calcDivision(a, b) {
-  return a / b;
-}
-let a = 4;
-let b = 3;
 
-console.log(calcAddition(a, b));
-console.log(calcSubtraction(a, b));
-console.log(calcMultiplication(a, b));
-console.log(calcDivision(a, b));
+
+alert(mathOperation(arg1, arg2, operation));
+alert(mathOperationSwitch(arg1, arg2, operation));
