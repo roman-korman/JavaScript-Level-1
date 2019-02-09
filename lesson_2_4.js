@@ -3,22 +3,19 @@
 let a = 0;
 let b = 0;
 
-//функция расчёта значений по следующему принципу:
-//если a и b положительные, вывести их разность;
-//если а и b отрицательные, вывести их произведение;
-//если а и b разных знаков, вывести их сумму;
+//операция сложения
 function calcAddition(a, b) {
   return a + b;
 }
-
+//опирация вычитания
 function calcSubtraction(a, b) {
   return a - b;
 }
-
+//операция умножения
 function calcMultiplication(a, b) {
   return a * b;
 }
-
+//операция деления
 function calcDivision(a, b) {
   return a / b;
 }
@@ -28,7 +25,7 @@ a = +prompt('Введи первое число');
 b = +prompt('Введи второе число');
 
 //вывод данных пользователю
-alert(calcAddition(a, b));
-alert(calcSubtraction(a, b));
-alert(calcMultiplication(a, b));
-alert(calcDivision(a, b));
+alert('операция сложения ' + calcAddition(a, b));
+alert('опирация вычитания ' + calcSubtraction(a, b));
+alert('операция умножения ' + calcMultiplication(a, b));
+alert('операция деления ' + calcDivision(a, b));

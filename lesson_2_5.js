@@ -1,4 +1,9 @@
 "use strict";
+//объявляем переменные
+let arg1 = 0;
+let arg2 = 0;
+let operation = 'операция';
+
 //Функция вычисления данных пользователя
 function mathOperation(arg1, arg2, operation) {
   if (operation == 'сложить') {
@@ -15,7 +20,6 @@ function mathOperation(arg1, arg2, operation) {
 }
 
 //Сначала написал функцию на switch, но она выдавала ошибку, попробовал на if. Отладил. Теперь обе работают
-
 function mathOperationSwitch(arg1, arg2, operation) {
   switch (operation) {
     case 'сложить':
@@ -34,16 +38,13 @@ function mathOperationSwitch(arg1, arg2, operation) {
       return 'ну и считай в уме';
   }
 }
-//объявляем переменные
-let arg1 = 0;
-let arg2 = 0;
-let operation = 'операция';
+
 //запрашиваем значения переменных у пользователя
 arg1 = +prompt('Введи первое число');
 arg2 = +prompt('Введи второе число');
 operation = prompt('Что нужно сделать?');
 
 
-
+//выводим результат
 alert(mathOperation(arg1, arg2, operation));
 alert(mathOperationSwitch(arg1, arg2, operation));
