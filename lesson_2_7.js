@@ -4,45 +4,45 @@ let pass = 'pass';
 
 
 //Функция вычисления длинны пароля
-function passLength(pass) {
+function checkPassLength(pass) {
   if (pass.length < 3) {
-    return 'error';
+    return false;
   } else if (pass.length > 12) {
-    return 'error';
+    return false;
   } else {
-    return 'ok';
+    return true;
   }
 
 }
 
 //функция проверки пароля на наличие символов &, $, %, *
-function passSymbol(pass) {
+function checkPassSymbol(pass) {
   if (pass.indexOf('&') < 0 && pass.indexOf('$') < 0 && pass.indexOf('%') < 0 && pass.indexOf('*') < 0) {
-    return 'error';
+    return false;
   } else {
-    return 'ok';
+    return true;
   }
 }
 
 
 //функция проверки пароля на совпадение с буквами
-function passLetter(pass) {
+function checkPassLetter(pass) {
   if (pass.indexOf('q', 0) == 0 || pass.indexOf('Q', 0) == 0 || (pass.length - pass.lastIndexOf("z")) == 1 || (pass.length - pass.lastIndexOf("Z")) == 1) {
-    return 'ok';
+    return true;
   } else {
-    return 'error';
+    return false;
   }
 }
 
 //функция проверки пароля
 function passCheck(pass) {
-  if (passLength(pass) == 'error') {
+  if (checkPassLength(pass) == false) {
     alert('Некорректный пароль');
     return;
-  } else if (passSymbol(pass) == 'error') {
+  } else if (checkPassSymbol(pass) == false) {
     alert('Некорректный пароль');
     return;
-  } else if (passLetter(pass) == 'error') {
+  } else if (checkPassLetter(pass) == false) {
     alert('Некорректный пароль');
     return;
   } else {
