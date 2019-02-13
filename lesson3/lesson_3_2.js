@@ -15,7 +15,7 @@ let basket = [{
     quantity: 1
   },
   {
-    id: 1,
+    id: 2,
     goods: 'laptopYearWarranty',
     brand: 'Apple',
     price: 15000.00,
@@ -23,10 +23,14 @@ let basket = [{
   }
 ]
 //объявляю переменю для вывода суммы
-let sum = 0;
 
-for (let i = 0; i < basket.length; i++) { //определяем количество альтераций цикла
-  sum = sum + basket[i].price * basket[i].quantity; //на каждой альтерации прибавляем стоимость строки с товаром (цена на количество)
+
+function countBasketPrice(basket) {
+  let sum = 0;
+  for (let i = 0; i < basket.length; i++) { //определяем количество альтераций цикла
+    sum = sum + basket[i].price * basket[i].quantity; //на каждой альтерации прибавляем стоимость строки с товаром (цена на количество)
+  }
+  return sum;
 }
 
-console.log(sum) //вывод информации
+console.log(countBasketPrice(basket)) //вывод информации
