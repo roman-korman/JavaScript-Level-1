@@ -3,21 +3,21 @@
 let basket = [{
     id: 0, //идетификатор строки
     goods: 'monitor', //группа товара
-    bugrand: 'BenQ', //бренд товара
+    brand: 'BenQ', //бренд товара
     price: 23000.00, //стоимость за единицу товара
     quantity: 1 //количество товра в корзине
   },
   {
     id: 1,
     goods: 'laptop',
-    bugrand: 'Apple',
+    brand: 'Apple',
     price: 150000.00,
     quantity: 1
   },
   {
     id: 1,
     goods: 'laptopYearWarranty',
-    bugrand: 'Apple',
+    brand: 'Apple',
     price: 15000.00,
     quantity: 2
   }
