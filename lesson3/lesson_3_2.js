@@ -28,7 +28,7 @@ let basket = [{
 function countBasketPrice(basket) {
   let sum = 0;
   for (let i = 0; i < basket.length; i++) { //определяем количество альтераций цикла
-    sum = sum + basket[i].price * basket[i].quantity; //на каждой альтерации прибавляем стоимость строки с товаром (цена на количество)
+    sum = sum + basket[i].price * basket[i].quantity; //на каждой итерации прибавляем стоимость строки с товаром (цена на количество)
   }
   return sum;
 }
