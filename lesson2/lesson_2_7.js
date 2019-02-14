@@ -24,7 +24,6 @@ function checkPassSymbol(pass) {
   }
 }
 
-
 //функция проверки пароля на совпадение с буквами
 function checkPassLetter(pass) {
   if (pass.indexOf('q', 0) == 0 || pass.indexOf('Q', 0) == 0 || (pass.length - pass.lastIndexOf("z")) == 1 || (pass.length - pass.lastIndexOf("Z")) == 1) {
