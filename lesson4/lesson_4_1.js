@@ -1,15 +1,32 @@
 "use strict";
-/*
-Написать функцию, преобразующую число в объект. Передавая на вход число от 0
-до 999, надо получить на выходе объект, в котором в соответствующих свойствах
-описаны единицы, десятки и сотни. Например, для числа 245 надо получить
-следующий объект: {‘единицы’: 5, ‘десятки’: 4, ‘сотни’: 2}. Если число превышает
-999, необходимо выдать соответствующее сообщение с помощью console.log и
-вернуть пустой объект.
-*/
-
-let a = 379;
-
+/**
+ * Объявлнеи объекта
+ */
+let obj = {};
+/**
+ *Функция запрашивает и анализирует вводимую информацию на корректность и запускает процесс пересчёта из цифрового значения в объекты
+ */
+function didgitsAnalysis() {
+  let userDidgit = prompt('Введите число от 0 до 999');
+  if (userDidgit === null) {
+    alert('Отмена операции');
+    return;
+  } else if (userDidgit == 0) { //дальнейшие функции немогут работать со значением 0, приходится выводить отдельную проверку
+    obj['единицы'] = 0;
+    console.log(obj);
+    return;
+  } else if (userDidgit > 0 && userDidgit <= 999) { //проверка на корректность воода
+    objectsFilling(splitDigits(userDidgit)); //запуск функций
+    console.log(obj);
+    return;
+  } else { //обработка исключений
+    alert('Введено не корректное значение')
+  }
+  didgitsAnalysis();
+}
+/**
+ *Функция разберает число от 1 до 99 на составляющие и возвращает в качестве массива
+ */
 function splitDigits(number) {
   let digits = [];
   while (number) {
@@ -18,8 +35,31 @@ function splitDigits(number) {
   }
   return digits;
 }
-let digits = splitDigits(a);
-
-console.log('Сотни ' + splitDigits(a)[2])
-console.log('Десятки ' + splitDigits(a)[1])
-console.log('Единицы ' + splitDigits(a)[0])
+/**
+ * Функция принимает массив из трёх знаков и заполняет его в качество объектов
+ */
+function objectsFilling(massif) {
+  for (let i = 0; i < massif.length; i++) {
+    switch (i) {
+      case 0:
+        obj['единицы'] = massif[0];
+      case 1:
+        if (massif[1] == undefined) {
+          break;
+        } else {
+          obj['десятки'] = massif[1];
+        }
+      case 2:
+        if (massif[2] == undefined) {
+          break;
+        } else {
+          obj['сотни'] = massif[2];
+        }
+    }
+    return obj; //возврат заполненного объекта
+  }
+}
+/**
+ * Запуск выполнения кода
+ */
+didgitsAnalysis();
