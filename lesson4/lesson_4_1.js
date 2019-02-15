@@ -1,6 +1,6 @@
 "use strict";
 /**
- * Объявлнеи объекта
+ * Объявление объекта
  */
 let obj = {};
 /**
@@ -11,11 +11,11 @@ function didgitsAnalysis() {
   if (userDidgit === null) {
     alert('Отмена операции');
     return;
-  } else if (userDidgit == 0) { //дальнейшие функции немогут работать со значением 0, приходится выводить отдельную проверку
+  } else if (userDidgit == 0) { //дальнейшие функции не могут работать со значением 0, приходится выводить отдельную проверку
     obj['единицы'] = 0;
     console.log(obj);
     return;
-  } else if (userDidgit > 0 && userDidgit <= 999) { //проверка на корректность воода
+  } else if (userDidgit > 0 && userDidgit <= 999) { //проверка на корректность ввода
     objectsFilling(splitDigits(userDidgit)); //запуск функций
     console.log(obj);
     return;
@@ -25,7 +25,7 @@ function didgitsAnalysis() {
   didgitsAnalysis();
 }
 /**
- *Функция разберает число от 1 до 99 на составляющие и возвращает в качестве массива
+ *Функция разбирает число от 1 до 99 на составляющие и возвращает в качестве массива
  */
 function splitDigits(number) {
   let digits = [];
