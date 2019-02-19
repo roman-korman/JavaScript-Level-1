@@ -1,25 +1,56 @@
 let game = {
 
-    run() {
-        while (true) {
-            let direction = prompt('Введите направление (2, 8, 4 или 6)');
+  run() {
+    while (true) {
+      let direction = prompt('Введите направление (1- вниз, влево / 2 - вниз / 3 - вниз, вправо / 4 - влево / 6 -вправо / 7 - вверх, влево / 8 - вверх / 9 - вверх, вправо)');
 
-            if (direction === null) {
-                console.log('Игра окончена');
-                return;
-            }
+      if (direction === null) {
+        console.log('Игра окончена');
+        return;
+      } else if (direction != 1 && direction != 2 && direction != 3 && direction != 4 && direction != 6 && direction != 7 && direction != 8 && direction != 9) {
+        alert('Пропуск хода')
+      }
+      nextPoint = this.move(direction);
+      renderer.clear();
+      player.move(nextPoint);
+      renderer.render();
+    }
+  },
 
-            let nextPoint = mover.getNextPoint(direction);
-            renderer.clear();
-            player.move(nextPoint);
-            renderer.render();
-        }
-    },
+  move(direction) {
+    let nextPoint = mover.getNextPoint(direction);
+    if (nextPoint.x > config.nRows && nextPoint.y > config.nColumns) {
+      nextPoint = mover.getBackPoint(direction);
+      alert('Вы дошли до павого-нижнего угла этого мира')
+    } else if (nextPoint.x < 0 && nextPoint.y > config.nColumns) {
+      nextPoint = mover.getBackPoint(direction);
+      alert('Вы дошли до левого-нижнего угла этого мира')
+    } else if (nextPoint.x < 0 && nextPoint.y < 0) {
+      nextPoint = mover.getBackPoint(direction);
+      alert('Вы дошли до левого-верхнего угла этого мира')
+    } else if (nextPoint.x > config.nRows && nextPoint.y < 0) {
+      nextPoint = mover.getBackPoint(direction);
+      alert('Вы дошли до правого-верхнего угла этого мира')
+    } else if (nextPoint.x > config.nRows) {
+      nextPoint = mover.getBackPoint(direction);
+      alert('Вы дошли до правой границы этого мира')
+    } else if (nextPoint.x < 0) {
+      nextPoint = mover.getBackPoint(direction);
+      alert('Вы дошли до левой границы этого мира')
+    } else if (nextPoint.y < 0) {
+      nextPoint = mover.getBackPoint(direction);
+      alert('Вы дошли до верхней границы этого мира')
+    } else if (nextPoint.y > config.nColumns) {
+      nextPoint = mover.getBackPoint(direction);
+      alert('Вы дошли до нижней границы этого мира')
+    }
+    return nextPoint;
+  },
 
-    init() {
-        console.log('Для начала игры введите команду game.run()');
-        renderer.render();
-    },
+  init() {
+    console.log('Для начала игры введите команду game.run()');
+    renderer.render();
+  },
 
 };
 
@@ -27,4 +58,3 @@ let game = {
 
 
 game.init();
-
