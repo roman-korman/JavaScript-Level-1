@@ -7,15 +7,22 @@ let renderer = {
 
   generateTable() {
     let board = '';
-    for (let y = 0; y < config.rowsCount; y++) {
+    for (let y = 0, i = 0; y < config.rowsCount; y++) {
       board += '<tr>';
-      if (y % 2 == 1) {
-
-        for (let x = 0; x < config.colsCount; x += 2) {
-          board += '<td data-x="' + x + '" data-y="' + y + '"> </td>';
-          board += '<td class="block"> </td>';
+      if (y % 2 == 1) { //отделяю чётные строчки, в которых будуду строить препядствия
+        i++;
+        if (i % 2 == 0) { //определяю строчки в которых нужно поставить открытое поле в коце
+          board += '<td data-x="' + 0 + '" data-y="' + y + '"> </td>';
+          for (let x = 0; x < config.colsCount - 1; x++) {
+            board += '<td class="block"> </td>';
+          }
+        } else { //определяю строчки в которых нужно поставить открытое поле в начале
+          for (let x = 0; x < config.colsCount - 1; x++) {
+            board += '<td class="block"> </td>';
+          }
+          board += '<td data-x="' + (config.colsCount - 1) + '" data-y="' + y + '"> </td>';
         }
-      } else {
+      } else { // строка по которой можно свободно перемещаться
         for (let x = 0; x < config.colsCount; x++) {
           board += '<td data-x="' + x + '" data-y="' + y + '"> </td>';
         }
