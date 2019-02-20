@@ -1,4 +1,4 @@
 const config = {
-  rowsCount: 10,
+  rowsCount: 11,
   colsCount: 10
 };
