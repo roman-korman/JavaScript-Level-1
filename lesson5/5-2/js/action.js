@@ -1,10 +1,6 @@
 "use strict";
-/**
- * Прохожу по справочнику товаров.
- * Записываю в объект товара необходимые характеристики собирая имя из свойств массива. Добавляю Цену со скидкой из справочника цен. Добавляю количество товара
- * Затем запускаю функцию добавления в корзину передавая в неё количество начиная с нулевой позиции (чётной)
- * При добавлении в корзину проверяю остатки товара и если их меньше нужного количества - товар в корзину не попадает.
- */
+
+
 function fillBasket() {
   for (let i = 0; i < goodsArray.length; i++) {
     let q = 0;
@@ -15,7 +11,6 @@ function fillBasket() {
     };
     good.putToGood(i);
     good.putToBasket(q);
-
   }
   renderer.render();
 };
@@ -32,6 +27,7 @@ let renderer = {
     let board = '';
     if (basket.goodList.length == 0) {
       board += '<tr><td>В корзине пока пусто :-(</td></tr>';
+      board += '<tr><td><button onclick="fillBasket()">Заполнить корзину</button></td></tr>';
     } else {
       board += '<tr><td>№</td><td>название товара</td><td>цена</td><td>количество</td><td>цена иторго</td></tr>';
       for (let i = 0; i < basket.goodList.length; i++) {
@@ -51,5 +47,5 @@ let renderer = {
     return '<table><tbody>' + board + ' </tbody></table>';
   }
 };
-fillBasket();
+//fillBasket();
 renderer.render();
