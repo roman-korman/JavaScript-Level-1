@@ -3,7 +3,6 @@ let renderer = {
   render() {
     let table = this.generateTable();
     document.body.insertAdjacentHTML('afterbegin', table);
-    this.renderUserPosition(player);
   },
 
   generateTable() {
