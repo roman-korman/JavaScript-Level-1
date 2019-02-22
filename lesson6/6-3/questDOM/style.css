@@ -17,6 +17,7 @@ td {
     background: darkred;
 }
 
-.block {
-  background: #cfcfcf;
+.wall {
+    background: gray;
 }
+

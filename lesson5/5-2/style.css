@@ -3,20 +3,19 @@ html {
 }
 
 table {
+    margin: auto;
     border-collapse: collapse;
+    border-color: black;
     background: rgb(131, 205, 240);
 }
 
 td {
+
     width: 30px;
     height: 30px;
     border: 2px solid black;
-}
-
-.user {
-    background: darkred;
-}
-
-.block {
-  background: #cfcfcf;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 7px;
+    white-space: nowrap;
 }

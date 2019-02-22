@@ -3,6 +3,7 @@ html {
 }
 
 table {
+    margin: auto;
     border-collapse: collapse;
     background: rgb(131, 205, 240);
 }
@@ -13,10 +14,16 @@ td {
     border: 2px solid black;
 }
 
-.user {
-    background: darkred;
+.black {
+  background: black;
 }
 
-.block {
-  background: #cfcfcf;
+.white {
+  background: white;
+}
+
+.contents {
+  border: none;
+  text-align: center;
+  vertical-align: middle;
 }
