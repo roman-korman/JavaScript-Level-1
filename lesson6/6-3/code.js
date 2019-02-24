@@ -1,12 +1,14 @@
 "use strict";
-
+/**
+ * объект расчётов
+ */
 let code = {
-  fildArray: [
+  fildArray: [ //игровой массив
     [0, 0, 0],
     [0, 0, 0],
     [0, 0, 0]
   ],
-  step: 0,
+  step: 0, //переменная счётчика шагов для чётности
   ttt(arr) {
     let d13 = 0,
       d31 = 0,
@@ -16,7 +18,9 @@ let code = {
       c1 = 0,
       c2 = 0,
       c3 = 0;
-
+    /**
+     * высчитываю текущее состояние поля
+     */
     for (let i = 0; i < arr.length; i++) {
       d13 += arr[i][i];
       d31 += arr[i][arr.length - 1 - i];
@@ -28,7 +32,9 @@ let code = {
       c3 += arr[i][2];
 
     }
-
+    /**
+     *  Проверяю на выигрыш
+     */
     if (d13 == 3 || d31 == 3 || r1 == 3 || r2 == 3 || r3 == 3 || c1 == 3 || c2 == 3 || c3 == 3) {
       return ('1');
     } else if (d13 == -3 || d31 == -3 || r1 == -3 || r2 == -3 || r3 == -3 || c1 == -3 || c2 == -3 || c3 == -3) {
@@ -37,21 +43,28 @@ let code = {
       return ('0')
     }
   },
+  /**
+   * Функция действия на поле
+   */
   push(x, y) {
-    this.step++
+    this.step++ //счётчик шагов
     if (this.step % 2 == 1) {
       this.fildArray[x][y] = 1;
     } else {
       this.fildArray[x][y] = -1;
     }
-    renderer.render();
+    renderer.render(); //перерисовать после действия
   }
 };
+
+/**
+ * Объект вывода
+ */
 let renderer = {
   render() {
     let feeld = this.generateFeeld();
     let gameFeeld = document.getElementById('ttt');
-    gameFeeld.innerHTML = feeld; //так переписывает строе значение, а не добавлет к нему
+    gameFeeld.innerHTML = feeld;
   },
   generateFeeld() {
     let board = '';
@@ -62,7 +75,7 @@ let renderer = {
             board += '<button onclick="code.push(' + i + ',' + j + ')"></button>'
           } else if (code.fildArray[i][j] == 1) { //квадрат с X
             board += '<i>X</i>'
-          } else if (code.fildArray[i][j] == -1) { //rdflhfn c Y
+          } else if (code.fildArray[i][j] == -1) { //квадрат c 0
             board += '<i>0</i>'
           } else {
             break;
@@ -78,6 +91,9 @@ let renderer = {
     board += '<button style="width: 300px" onclick="renderer.cleareFeeld()">очистить поле</button>';
     return board;
   },
+  /**
+   * Функция очистки игрового поля
+   */
   cleareFeeld() {
     code.fildArray = [
       [0, 0, 0],
@@ -88,4 +104,7 @@ let renderer = {
     renderer.render();
   }
 }
+/**
+ * Запуск игры
+ */
 renderer.render();
