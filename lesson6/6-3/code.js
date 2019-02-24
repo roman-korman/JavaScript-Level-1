@@ -72,22 +72,24 @@ let renderer = {
   },
   generateFeeld() {
     let board = '';
-    if (code.step == 9) {
-      board += '<span>Ничья</span>'
-    } else if (code.ttt(code.fildArray) == 0) {
-      for (let i = 0; i < code.fildArray.length; i++) { //наполняем строки
-        for (let j = 0; i < code.fildArray[i].length; j++) { //наполняем ячейки
-          if (code.fildArray[i][j] == 0) { //пустой квадрат
-            board += '<button onclick="code.push(' + i + ',' + j + ')"></button>'
-          } else if (code.fildArray[i][j] == 1) { //квадрат с X
-            board += '<i>X</i>'
-          } else if (code.fildArray[i][j] == -1) { //квадрат c 0
-            board += '<i>0</i>'
-          } else {
-            break;
+    if (code.ttt(code.fildArray) == 0) {
+      if (code.step == 9) {
+        board += '<span>Ничья</span>'
+      } else {
+        for (let i = 0; i < code.fildArray.length; i++) { //наполняем строки
+          for (let j = 0; i < code.fildArray[i].length; j++) { //наполняем ячейки
+            if (code.fildArray[i][j] == 0) { //пустой квадрат
+              board += '<button onclick="code.push(' + i + ',' + j + ')"></button>'
+            } else if (code.fildArray[i][j] == 1) { //квадрат с X
+              board += '<i>X</i>'
+            } else if (code.fildArray[i][j] == -1) { //квадрат c 0
+              board += '<i>0</i>'
+            } else {
+              break;
+            }
           }
+          board += '<br>';
         }
-        board += '<br>';
       }
     } else if (code.ttt(code.fildArray) == 1) {
       board += '<span>выиграли КРЕСТИКИ</span>'
