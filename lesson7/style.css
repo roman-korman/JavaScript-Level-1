@@ -5,22 +5,13 @@
 }
 
 .menuButton {
-    width: 130px;
+    width: 150px;
     padding: 15px;
     margin: 10px;
     color: white;
     background: #007b32;
     text-align: center;
     cursor: pointer;
-}
-
-.scoreLeyout {
-    width: 55px;
-    padding: 15px;
-    margin: 10px;
-    color: white;
-    background: #007b32;
-    text-align: center;
 }
 
 .menuButton:hover {
