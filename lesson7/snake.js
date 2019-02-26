@@ -117,6 +117,7 @@ let renderer = {
     });
 
     this.cells[`x${foodPoint.x}_y${foodPoint.y}`].classList.add('food');
+
   }
 };
 
@@ -141,6 +142,14 @@ let status = {
 
   isStopped() {
     return this.condition === 'stopped';
+  },
+
+  score() {
+    if (this.condition === 'playing') {
+      return snake.body[0] + ' из ' + settings.winLength;
+    } else {
+      return 'Счёт';
+    }
   }
 };
 
@@ -200,6 +209,7 @@ let game = {
   setEventHandlers() {
     document.getElementById('playButton').addEventListener('click', () => this.playClickHandler());
     document.getElementById('newGameButton').addEventListener('click', () => this.newGameClickHandler());
+    document.getElementById('scoreLeyout').innerHTML = status.score();
     document.addEventListener('keydown', () => this.keyDownHandler(event));
   },
 
