@@ -24,7 +24,9 @@ let snake = {
   },
 
   getNextStepHeadPoint() {
-    let firstPoint = this.body[0];
+    //let firstPoint = this.body[0];
+    let firstPoint = this.teleportStepHeadPoint(this.body[0]);;
+    console.log(firstPoint);
 
     switch (this.direction) {
       case 'up':
@@ -49,6 +51,34 @@ let snake = {
         };
     }
   },
+  //
+  teleportStepHeadPoint(point) {
+    if (point.y < 0) {
+      return {
+        x: point.x,
+        y: settings.colsCount,
+      }
+    } else if (point.x < 0) {
+      return {
+        x: settings.rowsCount,
+        y: point.y
+      }
+    } else if (point.x > settings.rowsCount) {
+      return {
+        x: 0,
+        y: point.y
+      }
+    } else if (point.y > settings.colsCount) {
+      return {
+        x: point.x,
+        y: 0,
+      }
+    } else {
+      return point
+    }
+
+  },
+  //
 
   isBodyPoint(point) {
     return this.body.some(snakePoint => snakePoint.x === point.x && snakePoint.y === point.y);
@@ -279,10 +309,10 @@ let game = {
   },
 
   tickHandler() {
-    if (!this.canSnakeMakeStep()) {
-      this.finish();
-      return;
-    }
+    // if (!this.canSnakeMakeStep()) {
+    //   this.finish();
+    //   return;
+    // }
 
     if (this.food.isFoodPoint(this.snake.getNextStepHeadPoint())) {
       this.snake.incrementBody();
