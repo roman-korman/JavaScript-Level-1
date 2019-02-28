@@ -324,10 +324,10 @@ let game = {
   },
 
   tickHandler() {
-    // if (!this.canSnakeMakeStep()) {
-    //   this.finish();
-    //   return;
-    // }
+    if (!this.canSnakeMakeStep()) {
+      this.finish();
+      return;
+    }
 
     if (this.food.isFoodPoint(this.snake.getNextStepHeadPoint())) {
       this.snake.incrementBody();
@@ -387,17 +387,17 @@ let game = {
     let playButton = document.getElementById('playButton');
     playButton.textContent = textContent;
     isDisabled ? playButton.classList.add('disabled') : playButton.classList.remove('disabled');
-  }
+  },
 
-  // canSnakeMakeStep() {
-  //   let nextHeadPoint = this.snake.getNextStepHeadPoint();
-  //
-  //   return !this.snake.isBodyPoint(nextHeadPoint) &&
-  //     nextHeadPoint.x < this.settings.colsCount &&
-  //     nextHeadPoint.y < this.settings.rowsCount &&
-  //     nextHeadPoint.x >= 0 &&
-  //     nextHeadPoint.y >= 0;
-  // }
+  canSnakeMakeStep() {
+    let nextHeadPoint = this.snake.getNextStepHeadPoint();
+
+    return !this.snake.isBodyPoint(nextHeadPoint); //&&
+    //nextHeadPoint.x < this.settings.colsCount &&
+    //nextHeadPoint.y < this.settings.rowsCount &&
+    //nextHeadPoint.x >= 0 &&
+    //nextHeadPoint.y >= 0;
+  }
 };
 
 window.onload = function() {
