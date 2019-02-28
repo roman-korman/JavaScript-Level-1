@@ -20,6 +20,7 @@ let snake = {
 
     this.lastStepDirection = this.direction;
     this.body.unshift(this.getNextStepHeadPoint());
+    //this.body.unshift(this.teleportStepHeadPoint(this.getNextStepHeadPoint())); в первом варианте не трогал функцию getNextStepHeadPoint
     this.body.pop();
   },
 
@@ -28,27 +29,71 @@ let snake = {
 
     switch (this.direction) {
       case 'up':
-        return {
+        return this.teleportStepHeadPoint({
           x: firstPoint.x,
           y: firstPoint.y - 1
-        };
+        });
+        // return {
+        //   x: firstPoint.x,
+        //   y: firstPoint.y - 1
+        // };
       case 'down':
-        return {
+        return this.teleportStepHeadPoint({
           x: firstPoint.x,
           y: firstPoint.y + 1
-        };
+        });
+        // return {
+        //   x: firstPoint.x,
+        //   y: firstPoint.y + 1
+        // };
       case 'right':
-        return {
+        return this.teleportStepHeadPoint({
           x: firstPoint.x + 1,
           y: firstPoint.y
-        };
+        });
+        // return {
+        //   x: firstPoint.x + 1,
+        //   y: firstPoint.y
+        // };
       case 'left':
-        return {
+        return this.teleportStepHeadPoint({
           x: firstPoint.x - 1,
           y: firstPoint.y
-        };
+        });
+        // return {
+        //   x: firstPoint.x - 1,
+        //   y: firstPoint.y
+        // };
     }
   },
+  //
+  teleportStepHeadPoint(point) {
+    if (point.y < 0) {
+      return {
+        x: point.x,
+        y: settings.colsCount - 1,
+      }
+    } else if (point.x < 0) {
+      return {
+        x: settings.rowsCount - 1,
+        y: point.y
+      }
+    } else if (point.x > settings.rowsCount - 1) {
+      return {
+        x: 0,
+        y: point.y
+      }
+    } else if (point.y > settings.colsCount - 1) {
+      return {
+        x: point.x,
+        y: 0,
+      }
+    } else {
+      return point
+    }
+
+  },
+  //
 
   isBodyPoint(point) {
     return this.body.some(snakePoint => snakePoint.x === point.x && snakePoint.y === point.y);
@@ -117,6 +162,8 @@ let renderer = {
     });
 
     this.cells[`x${foodPoint.x}_y${foodPoint.y}`].classList.add('food');
+
+    document.getElementById('scoreLeyout').innerHTML = status.score();
   }
 };
 
@@ -141,6 +188,14 @@ let status = {
 
   isStopped() {
     return this.condition === 'stopped';
+  },
+
+  score() {
+    if (this.condition === 'playing') {
+      return snake.body.length - 1 + ' из ' + settings.winLength;
+    } else {
+      return 'Счёт';
+    }
   }
 };
 
@@ -337,11 +392,11 @@ let game = {
   canSnakeMakeStep() {
     let nextHeadPoint = this.snake.getNextStepHeadPoint();
 
-    return !this.snake.isBodyPoint(nextHeadPoint) &&
-      nextHeadPoint.x < this.settings.colsCount &&
-      nextHeadPoint.y < this.settings.rowsCount &&
-      nextHeadPoint.x >= 0 &&
-      nextHeadPoint.y >= 0;
+    return !this.snake.isBodyPoint(nextHeadPoint); //&&
+    //nextHeadPoint.x < this.settings.colsCount &&
+    //nextHeadPoint.y < this.settings.rowsCount &&
+    //nextHeadPoint.x >= 0 &&
+    //nextHeadPoint.y >= 0;
   }
 };
 
