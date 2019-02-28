@@ -19,7 +19,8 @@ let snake = {
     // [{x: 4, y: 5}, {x: 5, y: 5}, {x: 6, y: 5}]
 
     this.lastStepDirection = this.direction;
-    this.body.unshift(this.teleportStepHeadPoint(this.getNextStepHeadPoint()));
+    this.body.unshift(this.getNextStepHeadPoint());
+    //this.body.unshift(this.teleportStepHeadPoint(this.getNextStepHeadPoint())); в первом варианте не трогал функцию getNextStepHeadPoint
     this.body.pop();
   },
 
@@ -28,25 +29,41 @@ let snake = {
 
     switch (this.direction) {
       case 'up':
-        return {
+        return this.teleportStepHeadPoint({
           x: firstPoint.x,
           y: firstPoint.y - 1
-        };
+        });
+        // return {
+        //   x: firstPoint.x,
+        //   y: firstPoint.y - 1
+        // };
       case 'down':
-        return {
+        return this.teleportStepHeadPoint({
           x: firstPoint.x,
           y: firstPoint.y + 1
-        };
+        });
+        // return {
+        //   x: firstPoint.x,
+        //   y: firstPoint.y + 1
+        // };
       case 'right':
-        return {
+        return this.teleportStepHeadPoint({
           x: firstPoint.x + 1,
           y: firstPoint.y
-        };
+        });
+        // return {
+        //   x: firstPoint.x + 1,
+        //   y: firstPoint.y
+        // };
       case 'left':
-        return {
+        return this.teleportStepHeadPoint({
           x: firstPoint.x - 1,
           y: firstPoint.y
-        };
+        });
+        // return {
+        //   x: firstPoint.x - 1,
+        //   y: firstPoint.y
+        // };
     }
   },
   //
