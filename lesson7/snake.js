@@ -19,14 +19,12 @@ let snake = {
     // [{x: 4, y: 5}, {x: 5, y: 5}, {x: 6, y: 5}]
 
     this.lastStepDirection = this.direction;
-    this.body.unshift(this.getNextStepHeadPoint());
+    this.body.unshift(this.teleportStepHeadPoint(this.getNextStepHeadPoint()));
     this.body.pop();
   },
 
   getNextStepHeadPoint() {
-    //let firstPoint = this.body[0];
-    let firstPoint = this.teleportStepHeadPoint(this.body[0]);;
-    console.log(firstPoint);
+    let firstPoint = this.body[0];
 
     switch (this.direction) {
       case 'up':
@@ -56,19 +54,19 @@ let snake = {
     if (point.y < 0) {
       return {
         x: point.x,
-        y: settings.colsCount,
+        y: settings.colsCount - 1,
       }
     } else if (point.x < 0) {
       return {
-        x: settings.rowsCount,
+        x: settings.rowsCount - 1,
         y: point.y
       }
-    } else if (point.x > settings.rowsCount) {
+    } else if (point.x > settings.rowsCount - 1) {
       return {
         x: 0,
         y: point.y
       }
-    } else if (point.y > settings.colsCount) {
+    } else if (point.y > settings.colsCount - 1) {
       return {
         x: point.x,
         y: 0,
@@ -372,17 +370,17 @@ let game = {
     let playButton = document.getElementById('playButton');
     playButton.textContent = textContent;
     isDisabled ? playButton.classList.add('disabled') : playButton.classList.remove('disabled');
-  },
-
-  canSnakeMakeStep() {
-    let nextHeadPoint = this.snake.getNextStepHeadPoint();
-
-    return !this.snake.isBodyPoint(nextHeadPoint) &&
-      nextHeadPoint.x < this.settings.colsCount &&
-      nextHeadPoint.y < this.settings.rowsCount &&
-      nextHeadPoint.x >= 0 &&
-      nextHeadPoint.y >= 0;
   }
+
+  // canSnakeMakeStep() {
+  //   let nextHeadPoint = this.snake.getNextStepHeadPoint();
+  //
+  //   return !this.snake.isBodyPoint(nextHeadPoint) &&
+  //     nextHeadPoint.x < this.settings.colsCount &&
+  //     nextHeadPoint.y < this.settings.rowsCount &&
+  //     nextHeadPoint.x >= 0 &&
+  //     nextHeadPoint.y >= 0;
+  // }
 };
 
 window.onload = function() {
