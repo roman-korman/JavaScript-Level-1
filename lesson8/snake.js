@@ -204,6 +204,7 @@ let settings = {
   colsCount: 21,
   speed: 2,
   winLength: 10,
+  timer: 10000,
 
   validate() {
     if (this.rowsCount < 10 || this.rowsCount > 30) {
@@ -315,12 +316,20 @@ let game = {
     this.renderer.render(this.snake.body, this.food.getFoodCoordinates());
   },
 
+  startNewTimer(millis) {
+    setTimeout(function() {
+      game.timeOut(); //обратитья в this нет возможности т.к. поднимися до уровня startNewTimer, а там нет функции timeOut
+    }, millis);
+  },
+
   play() {
     this.status.setPlaying();
 
     this.tickInterval = setInterval(() => this.tickHandler(), 1000 / this.settings.speed);
 
     this.changePlayButton('Стоп');
+
+    this.startNewTimer(settings.timer);
   },
 
   tickHandler() {
@@ -349,6 +358,12 @@ let game = {
     this.status.setStopped();
     clearInterval(this.tickInterval);
     this.changePlayButton('Старт');
+  },
+
+  timeOut() {
+    this.status.setStopped();
+    clearInterval(this.tickInterval);
+    this.changePlayButton('Время вышло');
   },
 
   finish() {
