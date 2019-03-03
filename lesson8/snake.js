@@ -316,9 +316,13 @@ let game = {
     this.renderer.render(this.snake.body, this.food.getFoodCoordinates());
   },
 
-  startNewTimer(millis) {
+  startNewTimer(userMessage, millis) {
     setTimeout(function() {
-      game.timeOut(); //обратитья в this нет возможности т.к. поднимися до уровня startNewTimer, а там нет функции timeOut
+      alert(userMessage);
+      game.status.setStopped();
+      clearInterval(game.tickInterval);
+      game.changePlayButton('Время вышло');
+      //game.timeOut(); //обратитья в this нет возможности т.к. поднимися до уровня startNewTimer, а там нет функции timeOut
     }, millis);
   },
 
@@ -329,7 +333,7 @@ let game = {
 
     this.changePlayButton('Стоп');
 
-    this.startNewTimer(settings.timer);
+    this.startNewTimer('Время вышло', settings.timer);
   },
 
   tickHandler() {
@@ -360,11 +364,11 @@ let game = {
     this.changePlayButton('Старт');
   },
 
-  timeOut() {
-    this.status.setStopped();
-    clearInterval(this.tickInterval);
-    this.changePlayButton('Время вышло');
-  },
+  // timeOut() {
+  //   this.status.setStopped();
+  //   clearInterval(this.tickInterval);
+  //   this.changePlayButton('Время вышло');
+  // },
 
   finish() {
     this.status.setFinished();
